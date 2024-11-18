@@ -1,0 +1,315 @@
+<html><head><base href="/" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$ERROR Token - Embrace the Future</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+  --primary: #ff0066;
+  --secondary: #00ffee;
+  --dark: #0a0a20;
+  --light: #ffffff;
+  --glitch: #4d00ff;
+  --neon-glow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--primary);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'VT323', monospace;
+}
+
+body {
+  background: var(--dark);
+  color: var(--light);
+  overflow-x: hidden;
+  background: linear-gradient(45deg, #0a0a20, #1a1a3a);
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+  perspective: 1000px;
+}
+
+.glitch-effect {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: float3D 5s ease-in-out infinite;
+}
+
+@keyframes float3D {
+  0%, 100% { transform: translateZ(0px) rotateX(0deg); }
+  50% { transform: translateZ(50px) rotateX(5deg); }
+}
+
+.glitch-effect::before,
+.glitch-effect::after {
+  content: 'ERROR';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-shadow: var(--neon-glow);
+}
+
+.glitch-effect::before {
+  color: var(--primary);
+  animation: glitch 2s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translateZ(20px);
+}
+
+.glitch-effect::after {
+  color: var(--glitch);
+  animation: glitch 2.5s infinite;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  transform: translateZ(-20px);
+}
+
+.content {
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 30px rgba(var(--primary), 0.3);
+  transform-style: preserve-3d;
+  animation: contentFloat 6s ease-in-out infinite;
+}
+
+@keyframes contentFloat {
+  0%, 100% { transform: translateY(0) rotateX(0deg); }
+  50% { transform: translateY(-20px) rotateX(2deg); }
+}
+
+h1 {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: var(--neon-glow);
+}
+
+.social-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.social-button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--secondary);
+  padding: 1rem 2.5rem;
+  color: var(--light);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 15px;
+  text-shadow: 0 0 10px var(--secondary);
+  box-shadow: 0 0 20px rgba(0, 255, 238, 0.2);
+  transform-style: preserve-3d;
+}
+
+.social-button:hover {
+  background: var(--secondary);
+  transform: scale(1.05) translateZ(20px);
+  box-shadow: 0 0 30px var(--secondary);
+  color: var(--dark);
+  text-shadow: none;
+}
+
+.buy-button {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  border: none;
+  padding: 1.5rem 3.5rem;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transform-style: preserve-3d;
+  transition: all 0.4s ease;
+}
+
+.buy-button:hover {
+  transform: scale(1.1) translateZ(30px);
+  box-shadow: 0 0 50px var(--primary);
+}
+
+.contract-address {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: var(--secondary);
+  text-shadow: 0 0 10px var(--secondary);
+}
+
+.tagline {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.floating-errors {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.error-symbol {
+  position: absolute;
+  color: rgba(0, 255, 238, 0.2);
+  font-size: 1.5rem;
+  animation: floatUp 20s linear infinite;
+  text-shadow: 0 0 5px var(--secondary);
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Add Matrix rain effect */
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.matrix-column {
+  position: absolute;
+  top: -100%;
+  width: 20px;
+  font-size: 1.2rem;
+  animation: matrixRain 20s infinite linear;
+  color: rgba(0, 255, 238, 0.2);
+  text-shadow: 0 0 5px var(--secondary);
+}
+
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+</style>
+
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+
+<script>
+function createFloatingErrors() {
+  const container = document.querySelector('.floating-errors');
+  const errors = ['404', 'ERROR', '500', 'FATAL', 'NULL', 'UNDEFINED'];
+  
+  for (let i = 0; i < 30; i++) {
+    const error = document.createElement('div');
+    error.classList.add('error-symbol');
+    error.textContent = errors[Math.floor(Math.random() * errors.length)];
+    error.style.left = Math.random() * 100 + '%';
+    error.style.animationDelay = Math.random() * 20 + 's';
+    container.appendChild(error);
+  }
+}
+
+function createMatrixRain() {
+  const container = document.querySelector('.matrix-rain');
+  const columns = Math.floor(window.innerWidth / 20);
+  
+  for (let i = 0; i < columns; i++) {
+    const column = document.createElement('div');
+    column.classList.add('matrix-column');
+    column.style.left = i * 20 + 'px';
+    column.style.animationDelay = Math.random() * 20 + 's';
+    
+    // Add random binary and error messages
+    let content = '';
+    for (let j = 0; j < 50; j++) {
+      content += Math.random() > 0.95 ? 'ERROR ' : (Math.random() > 0.5 ? '1' : '0');
+      content += '<br>';
+    }
+    column.innerHTML = content;
+    container.appendChild(column);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  createFloatingErrors();
+  createMatrixRain();
+});
+</script>
+</head>
+<body>
+
+<div class="matrix-rain"></div>
+<div class="hero">
+  <div class="floating-errors"></div>
+
+  <div class="content">
+    <h1 class="glitch-effect">$ERROR</h1>
+    <p class="tagline">🚀 Revolutionizing the Future of Digital Assets! 💫</p>
+    
+    <div class="social-buttons">
+      <a href="https://x.com/555elnaz" target="_blank" class="social-button">
+        <i class="fab fa-twitter"></i> Twitter
+      </a>
+      <a href="https://t.me/errorbyelnaz" target="_blank" class="social-button">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+    </div>
+
+    <a href="https://dexscreener.com/solana/3orV46tCbfijhnYooUd469GBuMAwtbGVhXzBRKUfpump" target="_blank" class="social-button buy-button">
+      BUY $ERROR NOW
+    </a>
+
+    <div class="contract-address">
+      <p>Contract: 3orV46tCbfijhnYooUd469GBuMAwtbGVhXzBRKUfpump</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
